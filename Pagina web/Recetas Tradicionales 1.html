@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santo Remedio - Plantas Medicinales de Oaxaca</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+	font-size: xx-large;
+	text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+	color: #099;
+	font-family: "Times New Roman", Times, serif;
+	text-align: center;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #1e3a24;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu li {
+            margin: 0 1rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            background-color: #4a7c59;
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        section {
+            padding: 3rem 0;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+	text-align: center;
+	font-size: 24px;
+	color: #2c5530;
+	margin-bottom: 2rem;
+	text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .section-content {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        /* Inicio Section */
+        .hero {
+            background: linear-gradient(rgba(44, 85, 48, 0.8), rgba(44, 85, 48, 0.8)), url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0ibGVhZiIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiPjxwYXRoIGQ9Ik01MCAyMGMyMCAwIDMwIDIwIDMwIDMwcy0xMCAzMC0zMCAzMC0zMC0yMC0zMC0zMCAxMC0zMCAzMC0zMHoiIGZpbGw9InJnYmEoMCwxMDAsMCwwLjEpIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2xlYWYpIi8+PC9zdmc+');
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Plants Grid */
+        .plants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .plant-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .plant-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .plant-card h3 {
+            color: #2c5530;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .plant-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Recipes */
+        .recipe-card {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 15px;
+            border-left: 5px solid #e74c3c;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .recipe-card h3 {
+            color: #c0392b;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .ingredients, .instructions {
+            margin: 1.5rem 0;
+        }
+
+        .ingredients h4, .instructions h4 {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .ingredients ul, .instructions ol {
+            margin-left: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .ingredients li, .instructions li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1e3a24;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo {
+                font-size: 2rem;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-menu li {
+                margin: 0.5rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .plants-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div>
+                    <div class="logo"><img src="Imagenes/logo principal.png" width="111" height="103" alt="">SANTO REMEDIO</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav>
+      <div class="container">
+        </div>
+    </nav>
+
+    <!-- Inicio Section -->
+<section id="inicio" class="hero">
+        <div class="container"></div>
+  </section>
+
+    <!-- Historia Section -->
+    <section id="historia">
+        <div class="container"></div>
+    </section>
+    <section id="plantas">
+      <div class="container">
+        <div class="plants-grid">
+          <div class="plant-card">
+          </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- Recetas Section -->
+    <section id="recetas">
+        <div class="container">
+            <h2 class="section-title">Recetas Tradicionales</h2>
+            <div class="section-content">
+                <p><span data-huuid="11441170255830139593">Las plantas medicinales son plantas que contienen compuestos químicos que pueden ser usados para tratar o prevenir enfermedades. </span><span data-huuid="11441170255830140768">Las rectas de plantas medicinales son recetas que describen cómo preparar y utilizar estas plantas para obtener sus beneficios terapéuticos</span>.</p>
+                <div>
+                  <div>
+                    <div data-hveid="CBgQAQ" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Qo_EKegQIGBAB">
+                      <h3><span data-huuid="11441170255830142547">¿Para qué sirven las plantas medicinales? </span></h3>
+                      <p><img src="Imagenes/descarga.jpg" width="316" height="214" alt=""></p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <div data-hveid="CBoQAQ" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Qo_EKegQIGhAB"><span data-huuid="11441170255830140801"><span aria-level="2" role="heading">Las plantas medicinales se pueden usar para:</span></span></div>
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <ul jscontroller="M2ABbc" jsaction="jZtoLb:SaHfyb" data-hveid="CCoQAQ" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Qm_YKegQIKhAB">
+                      <li><span data-huuid="11441170255830140230"><strong>Aliviar síntomas:</strong> </span><span data-huuid="11441170255830141405">Ayudan a reducir el dolor, la fiebre, la tos, entre otros. </span>
+                        <div data-cid="089b95c4-b559-4eb3-96e5-59d5d59454f1" data-uuids="11441170255830140230,11441170255830141405">
+                          <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CCQQAQ" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Q3fYKegQIJBAB">
+                            <div>
+                              <div> </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li><span data-huuid="11441170255830139659"><strong>Prevenir enfermedades:</strong> </span><span data-huuid="11441170255830140834">Algunas plantas tienen propiedades que pueden fortalecer el sistema inmunológico y ayudar a prevenir infecciones. </span>
+                        <div data-cid="f2d78fbc-619b-4b10-9e5e-8c75eb0af343" data-uuids="11441170255830139659,11441170255830140834">
+                          <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CCUQAQ" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Q3fYKegQIJRAB">
+                            <div>
+                              <div> </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li><span data-huuid="11441170255830139088"><strong>Curar enfermedades:</strong> </span><span data-huuid="11441170255830140263">Algunas plantas medicinales han demostrado ser eficaces para tratar condiciones específicas, como la diabetes, la gastritis, entre otras. </span>
+                        <div data-cid="b985c850-7333-4e57-918d-fb519796f80d" data-uuids="11441170255830139088,11441170255830140263">
+                          <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CCkQAQ" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Q3fYKegQIKRAB">
+                            <div>
+                              <div> </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <div data-hveid="CDQQAQ" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Qo_EKegQINBAB">
+                      <h3><span data-huuid="17904667251905989131">¿Qué son las rectas de plantas medicinales? </span></h3>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <div data-hveid="CDoQAQ" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Qo_EKegQIOhAB"><span data-huuid="17904667251905990313">Las rectas de plantas medicinales son instrucciones detalladas sobre cómo preparar y utilizar las plantas medicinales para obtener sus beneficios terapéuticos. </span><span data-huuid="17904667251905986808">Estas recetas pueden incluir información sobre: </span>
+                      <div data-cid="a7c471f0-16c5-41b3-a074-07e0afd3583a" data-uuids="17904667251905990313,17904667251905986808">
+                        <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CDsQAQ" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Q3fYKegQIOxAB">
+                          <div>
+                            <div> </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <ul jscontroller="M2ABbc" jsaction="jZtoLb:SaHfyb" data-hveid="CFUQAQ" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Qm_YKegQIVRAB">
+                      <li><span data-huuid="17904667251905988581"><strong>Qué partes de la planta se deben utilizar:</strong> </span><span data-huuid="17904667251905989172">Por ejemplo, hojas, raíces, flores o semillas. </span>
+                        <div data-cid="032cec3b-4590-4415-8eed-8d0ad90d4bf6" data-uuids="17904667251905988581,17904667251905989172">
+                          <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CEkQAQ" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Q3fYKegQISRAB">
+                            <div>
+                              <div> </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li><span data-huuid="17904667251905990354"><strong>Cómo preparar la planta:</strong> </span><span data-huuid="17904667251905986849">Por ejemplo, en infusión, cocción, cataplasma, entre otros. </span>
+                        <div data-cid="bc2dcbba-1c75-465d-b0ed-9ff08b08290f" data-uuids="17904667251905990354,17904667251905986849">
+                          <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CFAQAQ" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Q3fYKegQIUBAB">
+                            <div>
+                              <div> </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li><span data-huuid="17904667251905988031"><strong>Cómo utilizar la preparación:</strong> </span><span data-huuid="17904667251905988622">Por ejemplo, beber el té, aplicar un cataplasma, entre otros. </span>
+                        <div data-cid="fa4286b4-b3bc-4775-b6d9-a7ed1fbbfb9e" data-uuids="17904667251905988031,17904667251905988622">
+                          <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CEwQAQ" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Q3fYKegQITBAB">
+                            <div>
+                              <div> </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li><span data-huuid="17904667251905989804"><strong>Cantidad de planta y agua a utilizar:</strong> </span><span data-huuid="17904667251905990395">. </span>
+                        <div data-cid="de066f84-a582-4901-b539-b1c96ea9ef8a" data-uuids="17904667251905989804,17904667251905990395">
+                          <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CE8QAQ" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Q3fYKegQITxAB">
+                            <div>
+                              <div> </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li><span data-huuid="17904667251905987481"><strong>Tiempo de preparación:</strong> </span><span data-huuid="17904667251905988072">. </span>
+                        <div data-cid="8004dda4-6bae-49f2-be1a-c3af8b7eed5e" data-uuids="17904667251905987481,17904667251905988072">
+                          <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CE4QAQ" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Q3fYKegQIThAB">
+                            <div>
+                              <div> </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <div data-hveid="CGMQAQ" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Qo_EKegQIYxAB">
+                      <h3><span data-huuid="17937335892120927962"><span aria-level="2" role="heading">Ejemplos de recetas de plantas medicinales:</span></span></h3>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <ul jscontroller="M2ABbc" jsaction="jZtoLb:SaHfyb" data-hveid="CGYQAQ" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Qm_YKegQIZhAB">
+                      <li><span data-huuid="17937335892120925323"><strong>Infusión de manzanilla:</strong> </span><span data-huuid="17937335892120927174">Se utiliza para calmar dolores de cabeza, aliviar la inflamación, y mejorar el sueño. </span>
+                        <div data-cid="5f7dcb41-81bb-4328-a2ab-aca7840a5516" data-uuids="17937335892120925323,17937335892120927174">
+                          <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CHAQAQ" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Q3fYKegQIcBAB">
+                            <div>
+                              <div> </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li><span data-huuid="17937335892120926780"><strong>Cocimiento de hojas de guayaba:</strong> </span><span data-huuid="17937335892120924535">Ayuda a tratar la diarrea y otros problemas digestivos. </span>
+                        <div data-cid="d990c3cc-355f-4f32-aeec-8d4bcda1d111" data-uuids="17937335892120926780,17937335892120924535">
+                          <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CHEQAQ" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Q3fYKegQIcRAB">
+                            <div>
+                              <div> </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li><span data-huuid="17937335892120928237"><strong>Tónico de muicle:</strong> </span><span data-huuid="17937335892120925992">Se utiliza para regular la glucosa en sangre y aliviar síntomas de diabetes.</span></li>
+                      <li>
+                        <div>
+                          <div>
+                            <div data-hveid="CHcQAQ" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Qo_EKegQIdxAB">
+                              <h3><span data-huuid="17937335892120925204"><span aria-level="2" role="heading">Beneficios de las plantas medicinales:</span></span></h3>
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <div>
+                            <ul jscontroller="M2ABbc" jsaction="jZtoLb:SaHfyb" data-hveid="CIcBEAE" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Qm_YKegUIhwEQAQ">
+                              <li><span data-huuid="17937335892120926661"><strong>Efectos secundarios mínimos:</strong> </span><span data-huuid="17937335892120924416">En general, las plantas medicinales son menos propensas a causar efectos secundarios que los medicamentos sintéticos. </span>
+                                <div data-cid="17777f3b-1ab7-496b-893d-1b58250f84ca" data-uuids="17937335892120926661,17937335892120924416">
+                                  <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CH4QAQ" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Q3fYKegQIfhAB">
+                                    <div>
+                                      <div> </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                              <li><span data-huuid="17937335892120928118"><strong>Alternativa natural:</strong> </span><span data-huuid="17937335892120925873">Pueden ser una alternativa natural para tratar diversas dolencias. </span>
+                                <div data-cid="f0c09ea8-ec1c-46ba-9fae-640c77f4dec0" data-uuids="17937335892120928118,17937335892120925873">
+                                  <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CIEBEAE" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Q3fYKegUIgQEQAQ">
+                                    <div>
+                                      <div> </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                              <li><span data-huuid="17937335892120925479"><strong>Tradición ancestral:</strong> </span><span data-huuid="17937335892120927330">Su uso se remonta a tiempos ancestrales y forma parte de la cultura de diversas comunidades. </span>
+                                <div data-cid="4e29cedb-05f2-4f7d-9aea-bf7d9b2bdc3d" data-uuids="17937335892120925479,17937335892120927330">
+                                  <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CIUBEAE" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Q3fYKegUIhQEQAQ">
+                                    <div>
+                                      <div> </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div>
+                          <div>
+                            <div data-hveid="CIwBEAE" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Qo_EKegUIjAEQAQ">
+                              <h3><span data-huuid="10079259252218440066">Advertencia: </span></h3>
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <div>
+                            <div data-hveid="CIsBEAE" data-ved="2ahUKEwiugN3yhtSNAxVHMdAFHc1mAQ4Qo_EKegUIiwEQAQ"><span data-huuid="10079259252218440676">Es importante consultar con un profesional de la salud antes de utilizar plantas medicinales, especialmente si se está tomando otros medicamentos o si se tiene alguna condición médica.<span jscontroller="JHnpme" data-cid="21bc36ed-e38b-4142-981d-78a41ce61a12" jsaction="rcuQ6b:npT2md"> </span></span></div>
+                          </div>
+                        </div>
+                      <span data-huuid="17937335892120925992"><span jscontroller="JHnpme" data-cid="7fe5b513-f5fb-47cb-bf97-d39dcc6a220d" jsaction="rcuQ6b:npT2md"> </span></span></li>
+                    </ul>
+                  </div>
+                </div>
+                <p>&nbsp;</p>
+            </div>
+            <div class="recipe-card">            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Santo Remedio - Plantas Medicinales de Oaxaca</p>
+            <p>Preservando la sabiduría ancestral para las futuras generaciones</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling para la navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Efecto de desplazamiento suave para las tarjetas
+        const cards = document.querySelectorAll('.plant-card, .recipe-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

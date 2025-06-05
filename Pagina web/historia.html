@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santo Remedio - Plantas Medicinales de Oaxaca</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+	font-size: xx-large;
+	text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+	color: #099;
+	font-family: "Times New Roman", Times, serif;
+	text-align: center;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #1e3a24;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu li {
+            margin: 0 1rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            background-color: #4a7c59;
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        section {
+            padding: 3rem 0;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+	text-align: center;
+	font-size: 24px;
+	color: #2c5530;
+	margin-bottom: 2rem;
+	text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .section-content {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        /* Inicio Section */
+        .hero {
+            background: linear-gradient(rgba(44, 85, 48, 0.8), rgba(44, 85, 48, 0.8)), url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0ibGVhZiIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiPjxwYXRoIGQ9Ik01MCAyMGMyMCAwIDMwIDIwIDMwIDMwcy0xMCAzMC0zMCAzMC0zMC0yMC0zMC0zMCAxMC0zMCAzMC0zMHoiIGZpbGw9InJnYmEoMCwxMDAsMCwwLjEpIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2xlYWYpIi8+PC9zdmc+');
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Plants Grid */
+        .plants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .plant-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .plant-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .plant-card h3 {
+            color: #2c5530;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .plant-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Recipes */
+        .recipe-card {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 15px;
+            border-left: 5px solid #e74c3c;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .recipe-card h3 {
+            color: #c0392b;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .ingredients, .instructions {
+            margin: 1.5rem 0;
+        }
+
+        .ingredients h4, .instructions h4 {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .ingredients ul, .instructions ol {
+            margin-left: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .ingredients li, .instructions li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1e3a24;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo {
+                font-size: 2rem;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-menu li {
+                margin: 0.5rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .plants-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div>
+                    <div class="logo"><img src="Imagenes/logo principal.png" width="116" height="105" alt="logo">SANTO REMEDIO</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav>
+      <div class="container">
+        </div>
+    </nav>
+
+    <!-- Inicio Section -->
+<section id="inicio" class="hero">
+        <div class="container"></div>
+  </section>
+
+    <!-- Historia Section -->
+    <section id="historia">
+        <div class="container">
+          <div class="section-content">            </div>
+      </div>
+    </section>
+
+    <!-- Plantas Section -->
+    <section id="plantas">
+        <div class="container">
+            <h2 class="section-title">Historia</h2>
+            <p>&nbsp;</p>
+            <div class="section-content">
+                <h1> Historia de las plantas medicinales en Mexico</h1>
+                <div>
+                  <div>
+                    <div data-hveid="CBwQAQ" data-ved="2ahUKEwicrrnjz9aNAxUKC0QIHZUUB18Qo_EKegQIHBAB">
+                      <p><img src="Imagenes/descarga (5).jpg" width="250" height="247" alt="historia"></p>
+                      <p><span data-huuid="6091043419620032590">La historia del uso de las plantas medicinales se remonta a tiempos prehistóricos, cuando las civilizaciones antiguas ya utilizaban diversas plantas para tratar enfermedades y dolencias. </span><span data-huuid="6091043419620032879">En culturas como la egipcia, india y china, las plantas medicinales eran consideradas regalos de los dioses, con poderes mágicos y esenciales tanto para la medicina como para los rituales. </span><span data-huuid="6091043419620033168">El conocimiento sobre las plantas medicinales se ha transmitido a través de las generaciones y se ha documentado en textos antiguos como el Papiro Ebers y los Vedas. </span>
+                      </p>
+                      <div data-cid="9450cb57-b8a7-4d36-8066-f2ffd8bfd8ba" data-uuids="6091043419620032590,6091043419620032879,6091043419620033168">
+                        <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CB0QAQ" data-ved="2ahUKEwicrrnjz9aNAxUKC0QIHZUUB18Q3fYKegQIHRAB">
+                          <div>
+                            <div> </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div id="caI_aNyxFoqWkPIPlamc-AU__85">
+                      <div data-hveid="CGcQAQ" data-ved="2ahUKEwicrrnjz9aNAxUKC0QIHZUUB18Qo_EKegQIZxAB"><span data-huuid="6091043419620033746">Orígenes: </span></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div id="caI_aNyxFoqWkPIPlamc-AU__62">
+                      <ul jscontroller="M2ABbc" jsaction="jZtoLb:SaHfyb" data-hveid="CG8QAQ" data-ved="2ahUKEwicrrnjz9aNAxUKC0QIHZUUB18Qm_YKegQIbxAB">
+                        <div id="caI_aNyxFoqWkPIPlamc-AU__71">
+                          <li>
+                            <div data-il="">
+                              <div data-crb-p="">
+                                <div>
+                                  <div><span data-huuid="6091043419620034613"><strong>Tiempos prehistóricos:</strong></span></div>
+                                  <div><span data-huuid="6091043419620034902">Ya se encontraban restos de plantas con propiedades medicinales en yacimientos arqueológicos, como el de Shanidar en Irak, que datan de hace más de 60,000 años. </span></div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </div>
+                        <div id="caI_aNyxFoqWkPIPlamc-AU__77">
+                          <li>
+                            <div data-il="">
+                              <div data-crb-p="">
+                                <div>
+                                  <div><span data-huuid="6091043419620035480"><strong>Primeras civilizaciones:</strong></span></div>
+                                  <div><span data-huuid="6091043419620035769">En culturas como la egipcia, india y china, las plantas medicinales eran fundamentales para la salud y los rituales. </span></div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </div>
+                        <div id="caI_aNyxFoqWkPIPlamc-AU__80">
+                          <li>
+                            <div data-il="">
+                              <div data-crb-p="">
+                                <div>
+                                  <div><span data-huuid="6091043419620036347"><strong>Textos antiguos:</strong></span></div>
+                                  <div><span data-huuid="6091043419620032540">El Papiro Ebers (1500 a.C.) contiene una de las colecciones más antiguas de recetas medicinales, con más de 700 recetas. </span><span data-huuid="6091043419620032829">Los textos védicos de la India (1500 a.C.) sentaron las bases de la medicina ayurvédica. </span>
+                                    <div data-cid="b8f5616d-4dea-47a1-a951-378bb608e379" data-uuids="6091043419620034613,6091043419620034902,6091043419620035480,6091043419620035769,6091043419620036347,6091043419620032540,6091043419620032829">
+                                      <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CLEBEAE" data-ved="2ahUKEwicrrnjz9aNAxUKC0QIHZUUB18Q3fYKegUIsQEQAQ">
+                                        <div>
+                                          <div> </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </div>
+                      </ul>
+                    </div>
+                  </div>
+                  <div>
+                    <div id="caI_aNyxFoqWkPIPlamc-AU__67">
+                      <div data-hveid="CG4QAQ" data-ved="2ahUKEwicrrnjz9aNAxUKC0QIHZUUB18Qo_EKegQIbhAB"><span data-huuid="6091043419620033407">Importancia histórica: </span></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div id="caI_aNyxFoqWkPIPlamc-AU__49">
+                      <ul jscontroller="M2ABbc" jsaction="jZtoLb:SaHfyb" data-hveid="CGoQAQ" data-ved="2ahUKEwicrrnjz9aNAxUKC0QIHZUUB18Qm_YKegQIahAB">
+                        <div id="caI_aNyxFoqWkPIPlamc-AU__54">
+                          <li>
+                            <div data-il="">
+                              <div data-crb-p="">
+                                <div>
+                                  <div><span data-huuid="6091043419620034274"><strong>Medicina tradicional:</strong></span></div>
+                                  <div><span data-huuid="6091043419620034563">Las plantas medicinales han sido utilizadas a lo largo de la historia en la medicina tradicional, transmitiéndose el conocimiento de generación en generación. </span>
+                                    <div data-cid="056f91db-7930-4c7f-9334-070678383f8d" data-uuids="6091043419620034274,6091043419620034563">
+                                      <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CK4BEAE" data-ved="2ahUKEwicrrnjz9aNAxUKC0QIHZUUB18Q3fYKegUIrgEQAQ">
+                                        <div>
+                                          <div> </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </div>
+                        <div id="caI_aNyxFoqWkPIPlamc-AU__63">
+                          <li>
+                            <div data-il="">
+                              <div data-crb-p="">
+                                <div>
+                                  <div><span data-huuid="6091043419620035141"><strong>Cultura y rituales:</strong></span></div>
+                                  <div><span data-huuid="6091043419620035430">En muchas culturas, las plantas medicinales no solo eran utilizadas para la salud, sino también en rituales y creencias religiosas. </span>
+                                    <div data-cid="6f100727-3802-4c56-bb33-d3c8b0b0221a" data-uuids="6091043419620035141,6091043419620035430">
+                                      <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CK8BEAE" data-ved="2ahUKEwicrrnjz9aNAxUKC0QIHZUUB18Q3fYKegUIrwEQAQ">
+                                        <div>
+                                          <div> </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </div>
+                        <div id="caI_aNyxFoqWkPIPlamc-AU__70">
+                          <li>
+                            <div data-il="">
+                              <div data-crb-p="">
+                                <div>
+                                  <div><span data-huuid="6091043419620036008"><strong>Documentación histórica:</strong></span></div>
+                                  <div><span data-huuid="6091043419620036297">Textos y expediciones científicas como la de Francisco Hernández de Toledo en la Nueva España documentaron la riqueza biológica y las propiedades medicinales de las plantas. </span>
+                                    <div data-cid="dbd741a7-859b-4dd2-aa1e-e34cea188f01" data-uuids="6091043419620036008,6091043419620036297">
+                                      <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CLABEAE" data-ved="2ahUKEwicrrnjz9aNAxUKC0QIHZUUB18Q3fYKegUIsAEQAQ">
+                                        <div>
+                                          <div> </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </div>
+                      </ul>
+                    </div>
+                  </div>
+                  <div>
+                    <div id="caI_aNyxFoqWkPIPlamc-AU__87">
+                      <div data-hveid="CG0QAQ" data-ved="2ahUKEwicrrnjz9aNAxUKC0QIHZUUB18Qo_EKegQIbRAB"><span data-huuid="6091043419620032779">Herencia actual: </span></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div id="caI_aNyxFoqWkPIPlamc-AU__47">
+                      <ul jscontroller="M2ABbc" jsaction="jZtoLb:SaHfyb" data-hveid="CGIQAQ" data-ved="2ahUKEwicrrnjz9aNAxUKC0QIHZUUB18Qm_YKegQIYhAB">
+                        <div id="caI_aNyxFoqWkPIPlamc-AU__51">
+                          <li>
+                            <div data-il="">
+                              <div data-crb-p="">
+                                <div>
+                                  <div><span data-huuid="6091043419620033646"><strong>Medicina moderna:</strong></span></div>
+                                  <div><span data-huuid="6091043419620033935">La ciencia actual ha permitido identificar y aislar los principios activos de muchas plantas medicinales, que se utilizan en la elaboración de fármacos. </span>
+                                    <div data-cid="fe0680df-d4d0-4322-8503-b091d5f31f9a" data-uuids="6091043419620033646,6091043419620033935">
+                                      <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CKwBEAE" data-ved="2ahUKEwicrrnjz9aNAxUKC0QIHZUUB18Q3fYKegUIrAEQAQ">
+                                        <div>
+                                          <div> </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </div>
+                        <div id="caI_aNyxFoqWkPIPlamc-AU__58">
+                          <li>
+                            <div data-il="">
+                              <div data-crb-p="">
+                                <div>
+                                  <div><span data-huuid="6091043419620034513"><strong>Medicina complementaria:</strong></span></div>
+                                  <div><span data-huuid="6091043419620034802">Las plantas medicinales siguen siendo una parte importante de la medicina complementaria y alternativa, con una amplia variedad de usos terapéuticos. </span>
+                                    <div data-cid="ac8a5808-65b1-4f0a-a7a9-65b2782cff0a" data-uuids="6091043419620034513,6091043419620034802">
+                                      <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CLIBEAE" data-ved="2ahUKEwicrrnjz9aNAxUKC0QIHZUUB18Q3fYKegUIsgEQAQ">
+                                        <div>
+                                          <div> </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </div>
+                        <div id="caI_aNyxFoqWkPIPlamc-AU__64">
+                          <li>
+                            <div data-il="">
+                              <div data-crb-p="">
+                                <div>
+                                  <div><span data-huuid="6091043419620035380"><strong>Tradición oral:</strong></span></div>
+                                  <div><span data-huuid="6091043419620035669">El conocimiento sobre las plantas medicinales continúa transmitiéndose de forma oral en muchas culturas, especialmente en comunidades indígenas y afrodescendientes. </span>
+                                    <div data-cid="6704bf56-db54-4ff8-aee4-5cfe4721352f" data-uuids="6091043419620035380,6091043419620035669">
+                                      <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CK0BEAE" data-ved="2ahUKEwicrrnjz9aNAxUKC0QIHZUUB18Q3fYKegUIrQEQAQ">
+                                        <div>
+                                          <div> </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </div>
+                      </ul>
+                    </div>
+                  </div>
+                  <div>
+                    <div id="caI_aNyxFoqWkPIPlamc-AU__45">
+                      <div data-hveid="CGUQAQ" data-ved="2ahUKEwicrrnjz9aNAxUKC0QIHZUUB18Qo_EKegQIZRAB"><span data-huuid="6091043419620036247">En resumen, la historia de las plantas medicinales es una historia de larga duración y diversidad, donde la ciencia y la cultura se han combinado para aprovechar los beneficios de la naturaleza en la salud y el bienestar humano</span></div>
+                    </div>
+                  </div>
+                </div>
+          </div>
+            <div class="plants-grid">
+              <div class="plant-card">              </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recetas Section -->
+    <section id="recetas">
+        <div class="container">
+            <h2 class="section-title">&nbsp;</h2>
+            <div class="recipe-card">
+              <div class="ingredients">              </div>
+          </div>
+            <div class="recipe-card">
+            </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Santo Remedio - Plantas Medicinales de Oaxaca</p>
+            <p>Preservando la sabiduría ancestral para las futuras generaciones</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling para la navegación
+        
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+
+        // Efecto de desplazamiento suave para las tarjetas
+        const cards = document.querySelectorAll('.plant-card, .recipe-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

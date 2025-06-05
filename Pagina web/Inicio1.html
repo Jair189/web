@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santo Remedio - Plantas Medicinales de Oaxaca</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: xx-large;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            color: #099;
+            font-family: "Times New Roman", Times, serif;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        /* Navigation - HORIZONTAL */
+        .navbar {
+            background: linear-gradient(135deg, #2d5016, #4a7c59);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            height: 60px;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            position: relative;
+            margin: 0 8px;
+        }
+
+        .nav-link {
+            display: block;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 15px 18px;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-link:hover::before {
+            left: 100%;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Iconos para los elementos del menú */
+        .nav-link[data-menu="portada"]::after {
+            content: "🏠";
+            margin-left: 5px;
+        }
+
+        .nav-link[data-menu="historia"]::after {
+            content: "📖";
+            margin-left: 5px;
+        }
+
+        .nav-link[data-menu="plantas"]::after {
+            content: "🍃";
+            margin-left: 5px;
+        }
+
+        .nav-link[data-menu="ruda"]::after {
+            content: "🌿";
+            margin-left: 5px;
+        }
+
+        .nav-link[data-menu="cola-caballo"]::after {
+            content: "🌱";
+            margin-left: 5px;
+        }
+
+        .nav-link[data-menu="agua-chia"]::after {
+            content: "🍋";
+            margin-left: 5px;
+        }
+
+        .nav-link[data-menu="te-epazote"]::after {
+            content: "🍃";
+            margin-left: 5px;
+        }
+
+        .nav-link[data-menu="te-hierbabuena"]::after {
+            content: "🌿";
+            margin-left: 5px;
+        }
+
+        /* Sections */
+        section {
+            padding: 3rem 0;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 24px;
+            color: #2c5530;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .section-content {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 85, 48, 0.8), rgba(44, 85, 48, 0.8)), url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0ibGVhZiIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiPjxwYXRoIGQ9Ik01MCAyMGMyMCAwIDMwIDIwIDMwIDMwcy0xMCAzMC0zMCAzMC0zMC0yMC0zMC0zMCAxMC0zMCAzMC0zMHoiIGZpbGw9InJnYmEoMCwxMDAsMCwwLjEpIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2xlYWYpIi8+PC9zdmc+');
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Plants Grid */
+        .plants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .plant-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .plant-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .plant-card h3 {
+            color: #2c5530;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .plant-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Recipes */
+        .recipe-card {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 15px;
+            border-left: 5px solid #e74c3c;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .recipe-card h3 {
+            color: #c0392b;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .ingredients, .instructions {
+            margin: 1.5rem 0;
+        }
+
+        .ingredients h4, .instructions h4 {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .ingredients ul, .instructions ol {
+            margin-left: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .ingredients li, .instructions li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1e3a24;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo {
+                font-size: 2rem;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                height: auto;
+                padding: 10px 0;
+            }
+
+            .nav-item {
+                margin: 3px 0;
+                width: 100%;
+            }
+
+            .nav-link {
+                text-align: center;
+                font-size: 14px;
+                padding: 12px 15px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .plants-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Efectos adicionales */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .navbar {
+            animation: fadeInDown 0.6s ease-out;
+        }
+    .nav-item1 {            position: relative;
+            margin: 0 8px;
+}
+.nav-item1 {                margin: 3px 0;
+                width: 100%;
+}
+.nav-link1 {            display: block;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 15px 18px;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+}
+.nav-link1 {                text-align: center;
+                font-size: 14px;
+                padding: 12px 15px;
+}
+    #inicio .container h1 {
+	color: #000;
+}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div>
+                    <div class="logo"><img src="Imagenes/logo principal.png" width="103" height="99" alt="logo">SANTO REMEDIO</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation - HORIZONTAL -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="Inicio1.html">Portada</a><a href="#inicio" class="nav-link" data-menu="portada"></a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="historia.html">Historia</a><a href="#historia" class="nav-link" data-menu="historia"></a>
+                </li>
+                
+              <li class="nav-item">
+                    <a href="Santoremedio.html">Plantas Regionales</a><a href="#plantas" class="nav-link" data-menu="plantas"></a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="Plantasregionales.html">La Ruda</a><a href="#ruda" class="nav-link" data-menu="ruda"></a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="coladecaballo.html">Cola de Caballo</a><a href="#cola-caballo" class="nav-link" data-menu="cola-caballo"></a>
+                </li>
+                 <li class="nav-item">
+                    <a href="Recetas Tradicionales 1.html">Recetas</a><a href="#recetas" class="nav-link" data-menu="recetas"></a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="aguadelimon.html">Agua de Chía</a><a href="#agua-chia" class="nav-link" data-menu="agua-chia"></a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="tedeepazote.html">Té de Epazote</a><a href="#te-epazote" class="nav-link" data-menu="te-epazote"></a>
+                </li>
+                 <li class="nav-item">
+                    <a href="Recetastradicionales.html">Té de Hierba buena</a><a href="#te-hierba buena" class="nav-link" data-menu="te-hierba buena"></a>
+                </li>
+               
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Inicio Section -->
+<section id="inicio" class="hero">
+  <div class="container">
+    <h1>Bienvenido a Santo Remedio</h1>
+        <p>Descubre la sabiduría ancestral de las plantas medicinales de Oaxaca.        </p>
+    </div>
+    </section>
+
+    <!-- Historia Section -->
+    <section id="historia">
+      <div class="container">
+            <h2 class="section-title">Nuestra Historia</h2>
+        <div class="section-content">
+                <p>La medicina tradicional mexicana tiene sus raíces en las culturas prehispánicas que habitaron nuestro territorio. Los curanderos y médicos tradicionales han preservado durante siglos el conocimiento sobre las propiedades curativas de las plantas que crecen en nuestra rica biodiversidad.</p>
+                
+                <p>En Oaxaca, esta tradición se mantiene viva gracias a las comunidades indígenas que han transmitido de generación en generación los secretos de la herbolaria. Cada planta tiene su historia, su propósito y su forma correcta de preparación.</p>
+                
+                <p>Santo Remedio nace con la misión de preservar y compartir este invaluable patrimonio cultural, respetando siempre las tradiciones ancestrales y promoviendo un uso responsable de las plantas medicinales.</p>
+        </div>
+        </div>
+    </section>
+
+    <!-- Plantas Section -->
+    <section id="plantas">
+        <div class="container">
+            <h2 class="section-title">Plantas Medicinales</h2>
+            <div class="section-content">
+                <p><img src="Imagenes/10.png" width="399" height="344" alt="imagen"></p>
+                <p>Las plantas medicinales han sido compañeras de la humanidad desde tiempos remotos. Nuestros ancestros descubrieron en la naturaleza los remedios para aliviar dolencias y mantener la salud. Esta sabiduría milenaria se ha transmitido de generación en generación, creando un legado invaluable de conocimiento tradicional.</p>
+                <p>
+                  <object classid="clsid:166B1BCA-3F9C-11CF-8075-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/director/sw.cab#version=10,1,1,0" width="32" height="32" title="Video">
+                    <param name="src" value="Imagenes/Video de WhatsApp 2025-06-04 a las 20.56.20_8aa6a624.mp4">
+                    <embed src="Imagenes/Video de WhatsApp 2025-06-04 a las 20.56.20_8aa6a624.mp4" pluginspage="http://www.adobe.com/shockwave/download/" width="32" height="32"></embed>
+                  </object>
+                </p>
+                
+                <h3>Importancia de las Plantas Medicinales</h3>
+                <p>Las plantas medicinales, también llamadas hierbas medicinales, son plantas que se han utilizado tradicionalmente para tratar enfermedades y aliviar síntomas. Estas plantas contienen compuestos químicos que pueden tener efectos beneficiosos para la salud, como aliviar el dolor, reducir la inflamación o combatir infecciones.</p>
+                  
+                <h3>En México</h3>
+                  <ul>
+                      <li><strong>Gran variedad:</strong> México cuenta con una gran diversidad de plantas medicinales, con más de 4.500 especies utilizadas en la medicina tradicional.</li>
+                      <li><strong>Uso común:</strong> Se estima que el 90% de la población mexicana ha utilizado alguna planta medicinal al menos una vez en su vida.</li>
+                      <li><strong>Beneficios para la salud:</strong> Las plantas medicinales mexicanas se utilizan para tratar una variedad de problemas de salud, como diabetes, diarrea, depresión, ansiedad, entre otros.</li>
+                      <li><strong>Ejemplos de plantas medicinales mexicanas:</strong> Bugambilia, muicle, tomillo, cebolla, vaporub, guayaba, entre otras.</li>
+                  </ul>
+                  
+                <h3>Precauciones Importantes</h3>
+                  <ul>
+                      <li><strong>No son un sustituto de la medicina moderna:</strong> Si bien las plantas medicinales pueden ser una opción para complementar el tratamiento de salud, no deben reemplazar el asesoramiento y cuidado de un profesional de la salud.</li>
+                      <li><strong>Precauciones:</strong> Es importante consultar a un profesional de la salud antes de utilizar plantas medicinales, especialmente si se está tomando algún medicamento o se tiene alguna condición médica.</li>
+                      <li><strong>Uso responsable:</strong> Es fundamental utilizar las plantas medicinales de manera responsable y sostenible, para asegurar su disponibilidad y conservación.</li>
+                  </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de La Ruda -->
+    <section id="ruda">
+        <div class="container">
+            <div class="plant-card"></div>
+        </div>
+    </section>
+    <section id="te-hierbabuena">
+      <div class="container">
+        <div class="recipe-card">
+            </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Santo Remedio - Plantas Medicinales de Oaxaca</p>
+            <p>Preservando la sabiduría ancestral para las futuras generaciones</p>
+        </div>
+    </footer>
+
+    <script>
+        // Funcionalidad para navegación suave
+        document.addEventListener('DOMContentLoaded', function() {
+            // Suavizar el scroll para los enlaces internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Efecto de desplazamiento suave para las tarjetas
+            const cards = document.querySelectorAll('.plant-card, .recipe-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

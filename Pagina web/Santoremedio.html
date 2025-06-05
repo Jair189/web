@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santo Remedio - Plantas Medicinales de Oaxaca</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+	font-size: xx-large;
+	text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+	color: #099;
+	font-family: "Times New Roman", Times, serif;
+	text-align: center;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #1e3a24;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu li {
+            margin: 0 1rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            background-color: #4a7c59;
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        section {
+            padding: 3rem 0;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+	text-align: center;
+	font-size: 24px;
+	color: #2c5530;
+	margin-bottom: 2rem;
+	text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .section-content {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        /* Inicio Section */
+        .hero {
+            background: linear-gradient(rgba(44, 85, 48, 0.8), rgba(44, 85, 48, 0.8)), url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0ibGVhZiIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiPjxwYXRoIGQ9Ik01MCAyMGMyMCAwIDMwIDIwIDMwIDMwcy0xMCAzMC0zMCAzMC0zMC0yMC0zMC0zMCAxMC0zMCAzMC0zMHoiIGZpbGw9InJnYmEoMCwxMDAsMCwwLjEpIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2xlYWYpIi8+PC9zdmc+');
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Plants Grid */
+        .plants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .plant-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .plant-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .plant-card h3 {
+            color: #2c5530;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .plant-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Recipes */
+        .recipe-card {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 15px;
+            border-left: 5px solid #e74c3c;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .recipe-card h3 {
+            color: #c0392b;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .ingredients, .instructions {
+            margin: 1.5rem 0;
+        }
+
+        .ingredients h4, .instructions h4 {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .ingredients ul, .instructions ol {
+            margin-left: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .ingredients li, .instructions li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1e3a24;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo {
+                font-size: 2rem;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-menu li {
+                margin: 0.5rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .plants-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div>
+                    <div class="logo"><img src="Imagenes/logo principal.png" width="110" height="106" alt="">SANTO REMEDIO</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav>
+      <div class="container">
+        </div>
+    </nav>
+
+    <!-- Inicio Section -->
+<section id="inicio" class="hero">
+        <div class="container"></div>
+  </section>
+
+    <!-- Historia Section -->
+    <section id="historia">
+        <div class="container">
+          <div class="section-content">            </div>
+      </div>
+    </section>
+
+    <!-- Plantas Section -->
+    <section id="plantas">
+      <div class="container">
+            <h2 class="section-title">Plantas Regionales</h2>
+        <div class="section-content">
+                <p><img src="Imagenes/descarga (2).jpg" width="354" height="217" alt=""></p>
+                <p>Las plantas regionales son <strong>aquellas propias de una región o ecosistema determinado</strong>. Y su presencia en esa área es el resultado de fenómenos naturales, adaptación y evolución sin intervención del ser humano. De hecho la mayor parte de las plantas de nuestra región, Sinaloa, pertenece a las selvas secas.</p>
+                <p>Las plantas nativas son <strong>plantas que crecen de forma natural en una zona particular o ecosistema</strong>. Con el paso del tiempo, estas plantas han evolucionado y adaptado a las tierras y al clima así como a otras plantas y animales nativos.</p>
+                <p>Oaxaca, con su extraordinaria biodiversidad, alberga una gran variedad de plantas medicinales utilizadas tradicionalmente por las comunidades indígenas. Estas plantas han sido el fundamento de la medicina tradicional oaxaqueña durante siglos.</p>
+          </div>
+        <div>
+          <div>
+            <div data-hveid="CAMQAQ" data-ved="2ahUKEwjvuLrJi9SNAxUT6skDHa3TBG4Qo_EKegQIAxAB"><span data-huuid="3209717456500335099">Las plantas regionales en México son aquellas especies vegetales que naturalmente crecen y se han adaptado a una región geográfica específica, sin intervención humana. </span><span data-huuid="3209717456500338008">Estas plantas han evolucionado y se han adaptado a las condiciones locales de suelo, clima y fauna, formando parte de los ecosistemas regionales.<span jscontroller="JHnpme" data-cid="0000aefb-e9ec-4e29-866e-157416deb302" jsaction="rcuQ6b:npT2md"> 
+              <div data-cid="0000aefb-e9ec-4e29-866e-157416deb302" data-uuids="3209717456500335099,3209717456500338008">
+                <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CAQQAQ" data-ved="2ahUKEwjvuLrJi9SNAxUT6skDHa3TBG4Q3fYKegQIBBAB">
+                  <div>
+                    <div> </div>
+                  </div>
+                </div>
+              </div>
+            </span></span></div>
+          </div>
+        </div>
+        <div>
+          <div>
+            <div data-hveid="CAsQAQ" data-ved="2ahUKEwjvuLrJi9SNAxUT6skDHa3TBG4Qo_EKegQICxAB">
+              <p><span data-huuid="3209717456500334982">Más detalles sobre las plantas regionales en México: </span></p>
+              <p><img src="Imagenes/descarga (3).jpg" width="346" height="213" alt=""></p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div>
+            <ul jscontroller="M2ABbc" jsaction="jZtoLb:SaHfyb" data-hveid="CCUQAQ" data-ved="2ahUKEwjvuLrJi9SNAxUT6skDHa3TBG4Qm_YKegQIJRAB">
+              <li>
+                <div data-il="">
+                  <div data-crb-p="">
+                    <div>
+                      <div><span data-huuid="3209717456500335517"><strong>Origen y evolución:</strong></span></div>
+                      <div><span data-huuid="3209717456500338426">Las plantas regionales son las que han surgido y se han adaptado a las condiciones ambientales de una región sin intervención humana.<span jscontroller="JHnpme" data-cid="969c111a-0863-443b-a8d5-b72949277f5d" jsaction="rcuQ6b:npT2md"> 
+                        <div data-cid="969c111a-0863-443b-a8d5-b72949277f5d" data-uuids="3209717456500335517,3209717456500338426">
+                          <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CBsQAQ" data-ved="2ahUKEwjvuLrJi9SNAxUT6skDHa3TBG4Q3fYKegQIGxAB">
+                            <div>
+                              <div> </div>
+                            </div>
+                          </div>
+                        </div>
+                      </span></span></div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div data-il="">
+                  <div data-crb-p="">
+                    <div>
+                      <div><span data-huuid="3209717456500336052"><strong>Adaptación:</strong></span></div>
+                      <div><span data-huuid="3209717456500334865">Han evolucionado para sobrevivir y prosperar en un ecosistema específico, lo que las hace más resistentes a las condiciones locales.<span jscontroller="JHnpme" data-cid="d237b2f0-3d6b-4463-b75b-ca3c24fb4f8b" jsaction="rcuQ6b:npT2md"> 
+                        <div data-cid="d237b2f0-3d6b-4463-b75b-ca3c24fb4f8b" data-uuids="3209717456500336052,3209717456500334865">
+                          <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CCEQAQ" data-ved="2ahUKEwjvuLrJi9SNAxUT6skDHa3TBG4Q3fYKegQIIRAB">
+                            <div>
+                              <div> </div>
+                            </div>
+                          </div>
+                        </div>
+                      </span></span></div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div data-il="">
+                  <div data-crb-p="">
+                    <div>
+                      <div><span data-huuid="3209717456500336587"><strong>Importancia ecológica:</strong></span></div>
+                      <div><span data-huuid="3209717456500335400">Son fundamentales para la biodiversidad de una región, ya que ayudan a mantener la salud de los ecosistemas y proporcionan alimento y hábitat para la fauna local.<span jscontroller="JHnpme" data-cid="020befae-b2c1-4656-bab0-ab53b0fd0729" jsaction="rcuQ6b:npT2md"> 
+                        <div data-cid="020befae-b2c1-4656-bab0-ab53b0fd0729" data-uuids="3209717456500336587,3209717456500335400">
+                          <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CBEQAQ" data-ved="2ahUKEwjvuLrJi9SNAxUT6skDHa3TBG4Q3fYKegQIERAB">
+                            <div>
+                              <div> </div>
+                            </div>
+                          </div>
+                        </div>
+                      </span></span></div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div data-il="">
+                  <div data-crb-p="">
+                    <div>
+                      <div><span data-huuid="3209717456500337122"><strong>Uso tradicional:</strong></span></div>
+                      <div><span data-huuid="3209717456500335935">Muchas plantas regionales han sido utilizadas por los pueblos originarios de México para la alimentación, la medicina y la elaboración de artesanías.<span jscontroller="JHnpme" data-cid="537dd1ad-bace-4515-a067-b86e0db91386" jsaction="rcuQ6b:npT2md"> 
+                        <div data-cid="537dd1ad-bace-4515-a067-b86e0db91386" data-uuids="3209717456500337122,3209717456500335935">
+                          <div jsname="HtgYJd" aria-label="Ver vínculos relacionados" role="button" tabindex="0" jsaction="KjsqPd" data-hveid="CCAQAQ" data-ved="2ahUKEwjvuLrJi9SNAxUT6skDHa3TBG4Q3fYKegQIIBAB">
+                            <div>
+                              <div> </div>
+                            </div>
+                          </div>
+                        </div>
+                      </span></span></div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div data-il="">
+                  <div data-crb-p="">
+                    <div>
+                      <div><span data-huuid="3209717456500337657"><strong>Preservación:</strong></span></div>
+                      <div><span data-huuid="3209717456500336470">Es importante proteger las plantas regionales para mantener la biodiversidad de México y asegurar la salud de los ecosistemas.<span jscontroller="JHnpme" data-cid="6cb1de30-abfd-4090-8669-7bc1fe645850" jsaction="rcuQ6b:npT2md"> </span></span></div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Recetas Section -->
+    <section id="recetas">
+        <div class="container">
+            <h2 class="section-title">&nbsp;</h2>
+            <div class="recipe-card">
+              <div class="ingredients">              </div>
+          </div>
+            <div class="recipe-card">
+            </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Santo Remedio - Plantas Medicinales de Oaxaca</p>
+            <p>Preservando la sabiduría ancestral para las futuras generaciones</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling para la navegación
+        
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+
+        // Efecto de desplazamiento suave para las tarjetas
+        const cards = document.querySelectorAll('.plant-card, .recipe-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
